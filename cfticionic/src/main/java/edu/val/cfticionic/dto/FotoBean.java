@@ -4,8 +4,24 @@ public class FotoBean {
 	
 	private int idfoto;
 	private String ruta;
+	private String titulo;
 	
 	
+	public FotoBean(int idfoto, String ruta, String titulo) {
+		super();
+		this.idfoto = idfoto;
+		this.ruta = ruta;
+		this.titulo = titulo;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
 	public FotoBean() {}
 	
 	public FotoBean(int idfoto, String ruta) {

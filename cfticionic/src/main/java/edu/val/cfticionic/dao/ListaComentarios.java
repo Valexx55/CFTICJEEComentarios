@@ -144,6 +144,7 @@ public class ListaComentarios {
 				lista_comentarios = new ArrayList<Comentario>();
 			} else {
 				log.debug("Fichero comentarios ya existe");
+				log.debug("Ruta fichero comentarios = " + fichero.getAbsolutePath());
 				fr = new FileReader(fichero);
 				br = new BufferedReader(fr);
 				json_comentarios = br.readLine();

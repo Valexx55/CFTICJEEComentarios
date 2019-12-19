@@ -37,6 +37,17 @@ public class FotoController {
 			, "http://10.1.2.10:8081/cfticionic/fotos/rico.jpg" 
 			, "http://10.1.2.10:8081/cfticionic/fotos/terminator.jpg"};
 	
+	public final static String[] TITULOS_FOTOS = {"Adiós"
+			, "Un perro llamado dinero" 
+			, "Frozen 2" 
+			, "Gigolo"
+			, "Joker" 
+			, "Ladronas"
+			, "Un dia de lluvia en NY" 
+			, "Maléfica"
+			, "Si yo fuera rico" 
+			, "Terminator"};
+	
 	
 	//TODO: RESTRINIR EL ACCESO A LA FOTO, DEFINIR EL API DE COMENTARIOS
 	@RequestMapping(path = "/foto", method=RequestMethod.GET)
@@ -52,8 +63,9 @@ public class FotoController {
 				{
 					if (idfoto >=0 && idfoto<=RUTAS_FOTOS.length)
 					{
-						String nombre_foto = RUTAS_FOTOS[idfoto-1];
-						fotoBean = new FotoBean(idfoto, nombre_foto);
+						String nombre_foto = RUTAS_FOTOS[idfoto];
+						String titulo = TITULOS_FOTOS[idfoto];
+						fotoBean = new FotoBean(idfoto, nombre_foto, titulo);
 						httpStatus = HttpStatus.OK;
 					}
 					else {
@@ -85,7 +97,7 @@ public class FotoController {
 					lista_fotos = new ArrayList<FotoBean>();
 					for (int i = 0; i<RUTAS_FOTOS.length; i++)
 					{
-						fotoBean = new FotoBean(i, RUTAS_FOTOS[i]);
+						fotoBean = new FotoBean(i, RUTAS_FOTOS[i], TITULOS_FOTOS[i]);
 						lista_fotos.add(fotoBean);
 					}
 					respuesta = new ResponseEntity<List<FotoBean>>(lista_fotos, HttpStatus.OK);

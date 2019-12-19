@@ -25,7 +25,7 @@ public class ComentarioPostRequestDTO {
 	@NotNull
 	@Pattern(regexp="\\w{12}")
 	private String token;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private int idfoto;
 	private int idcomentario;

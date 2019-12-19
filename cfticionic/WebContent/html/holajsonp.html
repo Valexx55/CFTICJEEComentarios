@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Insert title here</title>
+<script type="text/javascript">
+function pepito (texto)
+{
+	
+	//https://maps.googleapis.com/maps/api/js?key=AIzaSyC4TNOihruokBfNZeXuCBzwxrcDnPhNKqI&libraries=places&callback=obtenerComentarios"
+	//console.log (texto);
+	var dni = JSON.parse (texto);
+	console.log ("Numero jsonp " + dni.numero);
+	console.log ("Letra jsonp " + dni.letra);
+	//var dni = JSON.parse(texto);
+	//console.log ("Numero = " +dni.numero);
+	//console.log ("Letra = " +dni.letra);
+}
+
+fetch('http://10.1.2.10:8081/cfticionic/jsondni')
+.then ( 
+		resp => 
+		{resp.json()
+			.then ( dni_json => 
+					{console.log("JSON fetch = " + dni_json.numero + " " + dni_json.letra);}
+					)},
+		error => 
+		{console.log ("ERROR fetch" + error );}
+).catch(function(error) {
+  console.log('Hubo un problema con la petición Fetch:' + error.message);
+});
+
+
+
+onload=pideDni;
+var xreq = new XMLHttpRequest ();
+
+
+function pideDni ()
+{
+	xreq.onreadystatechange = vueltaDni;
+	xreq.open("GET", 'http://10.1.2.10:8081/cfticionic/jsondni');
+	xreq.send();
+}
+function vueltaDni ()
+{
+	if (xreq.readyState == 4)
+		{	
+			if (xreq.status == 200)
+				{
+					//console.log ("Volvió ok");
+					var respuesta = xreq.responseText;
+					var dni = JSON.parse (respuesta);
+					console.log ("Numero ajax " + dni.numero);
+					console.log ("Letra ajax " + dni.letra);
+				}
+			else 
+			{
+				console.log ("Volvió mal");
+				
+			}
+		}
+}
+
+</script>
+<script src="http://10.1.2.10:8081/cfticionic/jsonpdni?callback=fulanito"></script>
+</head>
+<body>
+	<div id="saludo">
+		Hola MUNDO
+	</div>
+</body>
+</html>
